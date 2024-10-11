@@ -1,8 +1,10 @@
 from aiogram import  executor
 import logging
 from config import dp, bot
-from handlers import commands, echo, quiz, game
+from handlers import commands, echo, quiz, game, FSM_reg
 
+# FSM_reg.register_handlers_registration(dp)
+FSM_reg.register_handlers_store(dp)
 game.register_game(dp)
 commands.register_handlers_commands(dp)
 quiz.register_handlers_quiz(dp)
