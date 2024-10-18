@@ -11,7 +11,7 @@ cancel = ReplyKeyboardMarkup(resize_keyboard=True).add (KeyboardButton('Отме
 # cancel = ReplyKeyboardMarkup(resize_keyboard=True)
 # cancel.add(KeyboardButton('Отмена'))
 
-
+submit = ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton('Да'), KeyboardButton('Нет'))
 
 
 size_keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
