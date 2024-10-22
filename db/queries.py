@@ -13,7 +13,7 @@ INSERT_STORE_QUERY = """
     INSERT INTO store (name_product, product_id, size, price, photo)
     VALUES (?, ?, ?, ?, ?)
 """
-CREATE_TABLE_STORE_DETAIL = """
+CREATE_TABLE_DETAIL_STORE= """
 CREATE TABLE IF NOT EXISTS detail_store (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     product_id VARCHAR(255),

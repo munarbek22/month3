@@ -13,8 +13,8 @@ def fetch_all_products():
     conn = get_db_connection()
     products = conn.execute("""
     SELECT * FROM store s 
-    INNER JOIN  products_details ds
-    ON s.productid = ds.productid
+    INNER JOIN  detail_store ds
+    ON s.product_id = ds.product_id
     """).fetchall()
     conn.close()
     return products
