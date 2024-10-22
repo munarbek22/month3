@@ -14,7 +14,7 @@ class fsm_store(StatesGroup):
     price = State()
     photo = State()
     submit = State()
-
+    collection = State()
 
 async def start_store(message: types.Message):
     await message.answer('Введите название товара: ')
@@ -52,6 +52,12 @@ async def load_product_id(message: types.Message, state=FSMContext):
 async def load_info_product(message: types.Message, state=FSMContext):
     async with state.proxy() as data:
         data['info_product'] = message.text
+    await message.answer('Введите колекцию: ')
+    await fsm_store.next()
+
+async def load_collection(message: types.Message, state=FSMContext):
+    async with state.proxy() as data:
+        data['collection'] = message.text
     await message.answer('Введите цену товара: ')
     await fsm_store.next()
 
@@ -123,6 +129,7 @@ def register_handlers_store(dp: Dispatcher):
     dp.register_message_handler(load_category, state=fsm_store.category)
     dp.register_message_handler(load_product_id, state=fsm_store.product_id)
     dp.register_message_handler(load_info_product, state=fsm_store.info_product)
+    dp.register_message_handler(load_collection, state=fsm_store.collection)
     dp.register_message_handler(load_price, state=fsm_store.price)
     dp.register_message_handler(load_photo, state=fsm_store.photo, content_types=['photo'])
     dp.register_message_handler(submit, state=fsm_store.submit)

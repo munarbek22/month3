@@ -21,6 +21,16 @@ CREATE TABLE IF NOT EXISTS detail_store (
     info_product VARCHAR(255)
     )
  """
-# INSERT_STORE_DETAIL_QUERY = """
-#     INSERT INTO detail_store (product_id, category, info_product)
-#     VALUES (?, ?, ?)
+
+CREATE_TABLE_COLLECTION_PRODUCTS = """
+CREATE TABLE IF NOT EXISTS collection_products(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_id VARCHAR(255),
+    collection VARCHAR(255)
+)
+"""
+
+INSERT_COLLECTION = """
+    INSERT INTO collection_products(product_id, collection)
+    VALUES(?, ?)
+"""

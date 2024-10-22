@@ -12,6 +12,7 @@ async def on_startup(_):
                                text='Бот включен!')
         await db_main.sql_create()
 
+
 commands.register_handlers_commands(dp)
 quiz.register_handlers_quiz(dp)
 FSM_reg.register_handlers_registration(dp)
