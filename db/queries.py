@@ -2,35 +2,25 @@ CREATE_TABLE_STORE = """
 CREATE TABLE IF NOT EXISTS store (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name_product VARCHAR(255),
+    product_id VARCHAR(255),
     size VARCHAR(255),
     price VARCHAR(255),
     photo TEXT
     )
 """
 
-INSERT_VALUES = """
-    INSERT INTO store(name, size, price, photo)
-    VALUES (?, ?, ?, ?)
+INSERT_STORE_QUERY = """
+    INSERT INTO store (name_product, product_id, size, price, photo)
+    VALUES (?, ?, ?, ?, ?)
 """
-
-
-
-
-CREATE_TABLE_PRODUCTS_DETAILS = """
-CREATE TABLE IF NOT EXISTS products_details(
+CREATE_TABLE_STORE_DETAIL = """
+CREATE TABLE IF NOT EXISTS detail_store (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    productid INTEGER NOT NULL,
+    product_id VARCHAR(255),
     category VARCHAR(255),
-    infoproduct TEXT
-)
-"""
-
-INSERT_STORE = """
-    INSERT INTO store(product_id)
-    VALUES (?)
-"""
-
-INSERT_IN_DETAILS = """
-    INSERT INTO product_details(product_id, category, info_product)
-    VALUES (?, ?, ?)
-"""
+    info_product VARCHAR(255)
+    )
+ """
+# INSERT_STORE_DETAIL_QUERY = """
+#     INSERT INTO detail_store (product_id, category, info_product)
+#     VALUES (?, ?, ?)
