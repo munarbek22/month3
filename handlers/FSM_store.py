@@ -91,10 +91,10 @@ async def submit(message: types.Message, state=FSMContext):
                 category=data['category'],
                 info_product=data['info_product']
             )
-        await message.answer('Товар в базе!')
+        await message.answer('Товар в базе!', reply_markup=types.ReplyKeyboardRemove())
         await state.finish()
     elif message.text == 'Нет':
-        await message.answer('Отменено!')
+        await message.answer('Отменено!', reply_markup=types.ReplyKeyboardRemove())
         await state.finish()
     else:
         await message.answer('Для дальнейщего действия, нажмите на кнопки ниже')
