@@ -22,6 +22,11 @@ CREATE TABLE IF NOT EXISTS detail_store (
     )
  """
 
+INSERT_DETAIL_STORE = """
+    INSERT INTO detail_store(product_id, category, info_product)
+    VALUES (?, ?, ?)
+    """
+
 CREATE_TABLE_COLLECTION_PRODUCTS = """
 CREATE TABLE IF NOT EXISTS collection_products(
     id INTEGER PRIMARY KEY AUTOINCREMENT,

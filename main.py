@@ -1,7 +1,7 @@
 from aiogram import executor
 import logging
 from config import dp, bot, Admins
-from handlers import commands, echo, quiz, FSM_reg, FSM_store, send_products, send_and_delete_produucts
+from handlers import commands, echo, quiz, FSM_reg, FSM_store, send_products, send_and_delete_produucts, edit_products
 from db import db_main
 from handlers.send_products import sendall_products
 
@@ -12,7 +12,7 @@ async def on_startup(_):
                                text='Бот включен!')
         await db_main.sql_create()
 
-
+edit_products.register_update_handler(dp)
 commands.register_handlers_commands(dp)
 quiz.register_handlers_quiz(dp)
 FSM_reg.register_handlers_registration(dp)

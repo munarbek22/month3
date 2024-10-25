@@ -49,6 +49,7 @@ async def load_product_id(message: types.Message, state=FSMContext):
         data['product_id'] = message.text
     await message.answer('Введите инфо о товара: ')
     await fsm_store.next()
+
 async def load_info_product(message: types.Message, state=FSMContext):
     async with state.proxy() as data:
         data['info_product'] = message.text

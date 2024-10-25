@@ -14,7 +14,7 @@ def fetch_all_products():
     products = conn.execute("""
     SELECT * FROM store s 
     INNER JOIN  products_details ds
-    ON s.productid = ds.productid
+    ON s.product_id = ds.product_id
     """).fetchall()
     conn.close()
     return products
@@ -44,21 +44,24 @@ async def sendall_products(callback_query: types.CallbackQuery):
 
     if products:
         for product in products:
-            caption = (f'Верные ли данные: \n'
-                       f'Название - {product["name_product"]}\n'
+            caption = (f'Название - {product["name_product"]}\n'
                        f'Размер - {product["size"]}\n'
                        f'Категория - {product["category"]}\n'
                        f'Цена - {product["price"]}\n'
-                       f'Артикул - {product["productid"]}\n'
-                       f'Информация о товаре - {product["info_product"]}\n')
-            # delete_key
+                       f'Артикул - {product["product_id"]}\n\n'
+                       f'Информация о товаре - {product["info_product"]}')
+
+            delete_keyboard = types.InlineKeyboardMarkup(resize_keyboard=True)
+            delete_button = types.InlineKeyboardButton('Редактировать', callback_data=f'edit{product["product_id"]}')
+            delete_keyboard.add(delete_button)
 
             await callback_query.message.answer_photo(
-                photo=product['photo'],
-                caption=caption
+                photo=product["photo"],
+                caption=caption,
+                reply_markup=delete_keyboard
             )
     else:
-        await callback_query.message.answer('Товар нет!')
+        await callback_query.message.answer('Товаров нет!')
 
 def register_send_handler(dp: Dispatcher):
     dp.register_message_handler(start_send_products, commands=['products'])
